@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Css (p.dia,eventos).css">
+    <title>evento</title>
+</head>
+<body>
+
+ <header>
+        <div class="header-container">
+            <img src="ipro/logo_chb.jpg" alt="Logo Empresa 1" class="logo">
+            <h1>HOTEL BALNEARIO BRISAS DE CAMBULOS</h1>
+            <img src="ipro/logo_cambulos.jpg" alt="Logo Empresa 2" class="logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="reservas_form.html">Reserva</a></li>
+                <li><a href="Registro (pasadia,evento).html">Evento</a></li>
+                <li><a href="pasadiaformulario.html">Pasadia</a></li>
+                
+            </ul>
+            <form class="search-form">
+                <input type="text" placeholder="Buscar...">
+                <button type="submit">Buscar</button>
+            </form>
+        </nav>
+    </header>
+<!--MAIN-->
+<div class="main">
+    <div class="container">
+      <h2>Formulario Evento</h2>
+      <fo action="mail.php" enctype="multipart/form-data" method="post" name="formulario_html5" autocomplete="off">
+        <label for="nombre">Nombres</label></br>
+        <input type="text" name="nombres" id="nombre" class="cajas"></br>
+        <br>
+        <label for="email">Apellidos</label></br>
+        <input type="email" name="Apellidos" id="email" class="cajas"></br>
+        <br>
+        <label for="identificacion">CC</label></br>
+        <input type="num" name="CC" id="web-site" class="cajas">       </br>
+        <br>
+        <label for="telefono">Celular</label></br>
+        <input type="num" name="Celular" id="telefono" class="cajas"></br>
+        <br>
+        <label for="telefono">Correo</label></br>
+        <input type="varchar" name="Correo" id="telefono" class="cajas"></br>
+        <br>
+        <label for="telefono">Cantidad de Personas</label></br>
+        <input type="num" name="Cantidad" id="telefono" class="cajas"></br>
+        <br>
+        <label for="llegada">Fecha de Ingreso</label></br>
+        <input type="date" id="F_Ingreso" name="fecha-hora-llegada" class="cajas"></br>
+        <br>
+        <label for="llegada">Hora de Ingreso</label></br>
+        <input type="time" id="H_Ingreso" name="fecha-hora-llegada" class="cajas"></br>
+        <label for="llegada">Fecha de salida</label></br>
+        <input type="date" id="F_salida" name="fecha-hora-salida" class="cajas"></br>
+        <br>
+        <label for="llegada">Hora de salida</label></br>
+        <input type="time" id="H_salida" name="fecha-hora-llegada" class="cajas"></br>
+        <br>
+        <label for="precio-unitario">Precio Unitario</label></br>
+        <input type="num" id="precio-unitario" name="precio-unitario" required></br>
+        <br>
+        <label for="precio-unitario">Precio Total</label></br>
+        <input type="num" id="precio-Total" name="precio-Total" required></br>
+        <br>
+        <div class="buttons">
+          <button type="button" onclick="cancelarReserva()">Cancelar</button>
+          <button type="submit">Confirmar</button>
+        </div>
+  </form>
+    </divclas>
+  </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMULARIO RESERVAS</title>
+    <link rel="stylesheet" href="reseva_for.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+        <img src="ipro/logo_chb.jpg" alt="Logo Empresa 1" class="logo">
+        <h1>HOTEL BALNEARIO BRISAS DE CAMBULOS</h1>
+        <img src="ipro/logo_cambulos.jpg" alt="Logo Empresa 2" class="logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="inicio.html">Inicio</a></li>
+            <li><a href="reservas_form.html">Reserva</a></li>
+            <li><a href="Registro (pasadia,evento).html">Evento</a></li>
+            <li><a href="pasadiaformulario.html">pasadia</a></li>
+        </ul>
+        <form class="search-form">
+            <input type="text" placeholder="Buscar...">
+            <button type="submit">Buscar</button>
+        </form>
+    </nav>
+</header>
+  
+  <form>
+    <div class="container">
+        <h2>Formulario de reserva</h2>
+        <form action="registro" enctype="multipart/form-data" method="post" name="formulario_html5" autocomplete="off" class="parte1">
+  
+  
+          <label for="Nombres">Nombres</label></br>
+          <input type="text" name="nombre" id="nombre" class="cajas"></br>
+
+          <label for="Apellidos">Apellidos</label></br>
+          <input type="text" name="Apellidos" id="Apellidos" class="cajas"></br>
+         
+          <label for="identificacion">CC</label></br>
+          <input type="num" name="identificacion" id="CC" class="cajas"></br>
+  
+          <label for="direccion">Dirección de resisdencia</label></br>
+          <input type="varchar" name="direccion" id="direccion" class="cajas"></br>
+    
+          <label for="nacionalidad">Nacionalidad</label></br>
+          <input type="text" name="Nacionalidad" id="nacionalidad" class="cajas"></br>
+  
+          <label for="Procedencia">Procedencia</label></br>
+          <input type="text" name="Procedencia" id="Procedencia" class="cajas"></br>
+          
+          <label for="Vehículo">Vehículo</label></br>
+          <select id="Vehículo" class="cajas">
+            <option value="0" label="..."></option>
+            <option value="1" label="Carro">
+            <option value="2" label="Moto"></select></br>
+            
+          <label for="placa">Placa</label></br>
+          <input type="varchar" name="placa" id="placa" class="cajas"></br>
+            </form> 
+          <label for="llegada">Fecha y hora de llegada</label></br>
+          <input type="datetime-local" id="llegada" name="fecha-hora-llegada" class="cajas"></br>
+
+          <label for="email">Email</label></br>
+          <input type="email" name="email" id="email" class="cajas"></br>
+  
+          <label for="Ciudad">Ciudad</label></br>
+          <input type="text" name="Ciudad" id="Ciudad" class="cajas"></br>
+  
+          <label for="telefono">Teléfono</label></br>
+          <input type="num" name="telefono" id="telefono" class="cajas"></br>
+  
+          <label for="destino">Destino</label></br>
+          <input type="text" name="destino" id="destino" class="cajas"></br>
+  
+          <div class="buttons">
+            <button type="button" onclick="cancelar()">Cancelar</button>
+            <button type="submit">Confirmar</button>
+        </div>
+      </form>
+     </div>
+</body>
+</html>

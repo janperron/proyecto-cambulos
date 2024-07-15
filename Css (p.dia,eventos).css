@@ -1,0 +1,144 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.logo {
+  height: 50px;
+  margin: 0 20px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: rgb(250, 250, 250);
+  text-decoration: none;
+  padding: 10px 20px;
+  display: block;
+}
+
+.search-form {
+  display: flex;
+}
+
+.search-form input {
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+}
+
+.search-form button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
+}
+ 
+  .main{
+    background: color(srgb red rgb(99, 195, 99) rgb(255, 0, 234));
+    margin: 0;
+    padding: 20px;
+    width: 100%;
+  }
+  
+
+  .container{
+    background-image: url('http://www.walldevil.com/wallpapers/a77/pattern-tetris.jpg');
+    background-repeat: repeat;
+    background-size: 100%;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    color: #000000;
+    padding: 100px;
+    box-shadow: 3px 3px 10px #c7c7c7;
+  }
+  
+ 
+  .main h2{
+    font-family: 'Berkshire Swash', cursive;
+    color: #000000;
+    font-size: 200%;
+    text-shadow: 3px 3px 2px #00000000;
+  }
+  
+
+  .main form{
+    background-color: rgba(255, 4, 4, 0.8);
+    text-align: left;
+    padding: 20px;
+    font-size: 1.3em;
+    
+      
+  }
+  
+ 
+  .cajas{
+    border-radius: 5px;
+    margin: 15px 0;
+    background-color: #ffffff00;
+    border: 2px solid #000000;
+  }
+  
+  
+  .cajas:hover{
+    background-color: #fafafa;
+    border: 2px solid #080808;
+    box-shadow: 3px 3px 6px #fff;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button[type="button"] {
+    background-color: #dc3545;
+    color: white;
+}
+
+button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+}

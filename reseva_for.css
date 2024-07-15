@@ -1,0 +1,130 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo {
+    height: 50px;
+    margin: 0 20px;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+}
+.search-form {
+    display: flex;
+}
+
+.search-form input {
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+}
+
+.search-form button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.container {
+    
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+}
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+input[type="text"],
+input[type="text"],
+input[type="num"],
+input[type="varchar"],
+input[type="text"],
+input[type="text"],
+select[type="text"]
+input[type="varchar"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="text"],
+input[type="number"],
+input[type="text"],
+.cajas {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+    width: calc(100% - 22px);
+    box-sizing: border-box;
+}
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button[type="button"] {
+    background-color: #dc3545;
+    color: white;
+}
+
+button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Reserva para Pasadía</title>
+    <link rel="stylesheet" href="pasadiaestilo.css">
+</head>
+<body>
+    <form action="conexion bd.php" method="post">
+    <header>
+        <div class="header-container">
+            <img src="ipro/logo_chb.jpg" alt="Logo Empresa 1" class="logo">
+            <h1>HOTEL BALNEARIO BRISAS DE CAMBULOS</h1>
+            <img src="ipro/logo_cambulos.jpg" alt="Logo Empresa 2" class="logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="reservas_form.html">Reserva</a></li>
+                <li><a href="Registro (pasadia,evento).html">Evento</a></li>
+                <li><a href="pasadiaformulario.html">pasadia</a></li>
+                
+            </ul>
+            <form class="search-form">
+                <input type="text" placeholder="Buscar...">
+                <button type="submit">Buscar</button>
+            </form>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <div class="carousel">
+            <img src="ipro/im1.jpg" alt="Imagen 1" class="carousel-image">
+            <img src="ipro/im2.jpg" alt="Imagen 2" class="carousel-image">
+            <img src="ipro/im3.jpg" alt="Imagen 3" class="carousel-image">
+            <img src="ipro/im4.jpg" alt="Imagen 4" class="carousel-image">
+            <img src="ipro/camb2.jpg" alt="Imagen 5" class="carousel-image">
+            <img src="ipro/piscina.jpg" alt="Imagen 6" class="carousel-image">
+        </div>
+
+        <div class="form-container">
+            <h1>Formulario de Reserva para Pasadía</h1>
+            <form action="submit_form.php" method="POST">
+                <label for="cantidad">Cantidad de Personas:</label>
+                <input type="number" id="cantidad" name="cantidad" min="1" required>
+
+                <label for="fecha-ingreso">Fecha y Hora de Ingreso:</label>
+                <input type="datetime-local" id="fecha-ingreso" name="fecha_ingreso" required>
+
+                <label for="fecha-salida">Fecha y Hora de Salida:</label>
+                <input type="datetime-local" id="fecha-salida" name="fecha_salida" required>
+
+                <label for="precio-unitario">precio unitario:</label>
+                <input type="number" id="precio-unitario" name="precio_unitario" required>
+
+                <label for="precio-total">Precio Total:</label>
+                <input type="number" id="precio-total" name="precio_total" readonly>
+
+                <label for="descripcion">Descripción del Servicio:</label>
+                <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+
+                <div class="buttons">
+                    <button type="button" onclick="cancelarReserva()">Cancelar</button>
+                    <button type="submit">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="pasadia.js"></script>
+</body>
+</html>
+
