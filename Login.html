@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="estilo_login.css">
+    <link rel="stylesheet" href="estilos/estilo_login.css">
 </head>
 <body>
     <div class="login-container">
+        <img src="estilos/ipro/logo_chb.jpg" alt="Logo Empresa 1" class="logo">
         <h2>Iniciar sesión</h2>
-        <form id="login-form">
-            <input type="text" id="username" placeholder="Nombre de usuario" required>
-            <input type="password" id="password" placeholder="Contraseña" required>
+        <form id="login-form" action="Conexion_login.php" method="post">
+            <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
+            <input type="password" id="password" name="password" placeholder="Contraseña" required>
             <button type="submit">Iniciar sesión</button>
         </form>
         <p>¿No tienes una cuenta? <a href="registro.html" target="_blank">Regístrate aquí</a></p>

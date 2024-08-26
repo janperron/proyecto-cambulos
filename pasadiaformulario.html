@@ -3,72 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Reserva para Pasadía</title>
-    <link rel="stylesheet" href="pasadiaestilo.css">
+    <title>Planes de Pasadía</title>
+    <link rel="stylesheet" href="estilos/prueba.css">
 </head>
 <body>
-    <form action="conexion bd.php" method="post">
+
     <header>
-        <div class="header-container">
-            <img src="ipro/logo_chb.jpg" alt="Logo Empresa 1" class="logo">
-            <h1>HOTEL BALNEARIO BRISAS DE CAMBULOS</h1>
-            <img src="ipro/logo_cambulos.jpg" alt="Logo Empresa 2" class="logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="inicio.html">Inicio</a></li>
-                <li><a href="reservas_form.html">Reserva</a></li>
-                <li><a href="Registro (pasadia,evento).html">Evento</a></li>
-                <li><a href="pasadiaformulario.html">pasadia</a></li>
-                
-            </ul>
-            <form class="search-form">
-                <input type="text" placeholder="Buscar...">
-                <button type="submit">Buscar</button>
-            </form>
-        </nav>
+        <img src="estilos/ipro/logo_chb.jpg" alt="Logo Empresa 1" class="logo">
+        <h3>HOTEL BALNEARIO BRISAS DE CAMBULOS</h3>
+        <ul>
+            <li><a href="inicio.php" target="_blank">Inicio</a></li>
+            <li><a href="reservas_form.html" target="_blank">Reserva</a></li>
+            <li><a href="Registro (pasadia,evento).html" target="_blank">Evento</a></li>
+            <li><a href="pasadiaformulario.html" target="_blank">Pasadía</a></li>
+            <li><a href="Login.html" target="_blank">Inicia Sesión</a></li>
+        </ul>
     </header>
 
-    <div class="main-container">
-        <div class="carousel">
-            <img src="ipro/im1.jpg" alt="Imagen 1" class="carousel-image">
-            <img src="ipro/im2.jpg" alt="Imagen 2" class="carousel-image">
-            <img src="ipro/im3.jpg" alt="Imagen 3" class="carousel-image">
-            <img src="ipro/im4.jpg" alt="Imagen 4" class="carousel-image">
-            <img src="ipro/camb2.jpg" alt="Imagen 5" class="carousel-image">
-            <img src="ipro/piscina.jpg" alt="Imagen 6" class="carousel-image">
+    <div class="planes-container">
+        <!-- Plan 1 -->
+        <div class="plan">
+            <div class="plan-image" onclick="togglePlan('plan1')">
+                <img src="estilos/ipro/IMG-20240628-WA0074.jpg" alt="Plan 1">
+                <h3>Plan Familiar</h3>
+            </div>
+            <div class="plan-details" id="plan1">
+                <p>Disfruta de un día inolvidable en familia con acceso a la piscina, almuerzo buffet, y actividades recreativas para todas las edades.</p>
+                <p><strong>Precio:</strong> $50 por persona</p>
+                <button onclick="reservar('Plan Familiar')">Reservar</button>
+            </div>
         </div>
 
-        <div class="form-container">
-            <h1>Formulario de Reserva para Pasadía</h1>
-            <form action="submit_form.php" method="POST">
-                <label for="cantidad">Cantidad de Personas:</label>
-                <input type="number" id="cantidad" name="cantidad" min="1" required>
+        <!-- Plan 2 -->
+        <div class="plan">
+            <div class="plan-image" onclick="togglePlan('plan2')">
+                <img src="estilos/ipro/IMG-20240628-WA0037.jpg" alt="Plan 2">
+                <h3>Plan Romántico</h3>
+            </div>
+            <div class="plan-details" id="plan2">
+                <p>Una experiencia romántica para dos personas con cena especial a la luz de las velas, acceso a la zona de spa y piscina privada.</p>
+                <p><strong>Precio:</strong> $120 por pareja</p>
+                <button onclick="reservar('Plan Romántico')">Reservar</button>
+            </div>
+        </div>
 
-                <label for="fecha-ingreso">Fecha y Hora de Ingreso:</label>
-                <input type="datetime-local" id="fecha-ingreso" name="fecha_ingreso" required>
-
-                <label for="fecha-salida">Fecha y Hora de Salida:</label>
-                <input type="datetime-local" id="fecha-salida" name="fecha_salida" required>
-
-                <label for="precio-unitario">precio unitario:</label>
-                <input type="number" id="precio-unitario" name="precio_unitario" required>
-
-                <label for="precio-total">Precio Total:</label>
-                <input type="number" id="precio-total" name="precio_total" readonly>
-
-                <label for="descripcion">Descripción del Servicio:</label>
-                <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
-
-                <div class="buttons">
-                    <button type="button" onclick="cancelarReserva()">Cancelar</button>
-                    <button type="submit">Confirmar</button>
-                </div>
-            </form>
+        <!-- Plan 3 -->
+        <div class="plan">
+            <div class="plan-image" onclick="togglePlan('plan3')">
+                <img src="estilos/ipro/IMG-20240628-WA0045.jpg" alt="Plan 3">
+                <h3>Plan Aventura</h3>
+            </div>
+            <div class="plan-details" id="plan3">
+                <p>Para los amantes de la aventura: incluye tirolesa, escalada, recorrido por la selva, y almuerzo picnic.</p>
+                <p><strong>Precio:</strong> $70 por persona</p>
+                <button onclick="reservar('Plan Aventura')">Reservar</button>
+            </div>
         </div>
     </div>
 
-    <script src="pasadia.js"></script>
+    <script>
+        function togglePlan(id) {
+            const planDetails = document.getElementById(id);
+            if (planDetails.style.display === "block") {
+                planDetails.style.display = "none";
+            } else {
+                planDetails.style.display = "block";
+            }
+        }
+
+        function reservar(planName) {
+            alert(`Has seleccionado reservar el ${planName}. Serás redirigido a la página de reservas.`);
+            // Aquí puedes añadir redirección a la página de reservas
+            // window.location.href = "pagina_de_reservas.html";
+        }
+    </script>
+  <footer>
+    <h2>Informacion</h2>
+    <p>Horario: fines de semana y festivos. 8:00 am - 5:00 pm</p>
+          <h2>Contacto</h2>
+          <p>Email: contacto@tuempresa.com</p>
+          <p>Teléfono: (+57)3208265400</p>
+          <p>Dirección: Sector las Bombas Villeta-Cundinamarca</p>
+  <p>&copy; 2024 HOTEL BALNEARIO BRISAS DE CAMBULOS. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('header ul li a').forEach(link => {
+    link.addEventListener('click', function(event) {
+        if (link.href === window.location.href) {
+            event.preventDefault(); // Previene la recarga si estás en la misma página
+        }
+    });
+});
+  </script>
+  
 </body>
 </html>
-

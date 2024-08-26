@@ -3,77 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Css (p.dia,eventos).css">
-    <title>evento</title>
+    <link rel="stylesheet" href="estilos/eventos.css">
+    <title>Evento</title>
 </head>
 <body>
-
- <header>
-        <div class="header-container">
-            <img src="ipro/logo_chb.jpg" alt="Logo Empresa 1" class="logo">
-            <h1>HOTEL BALNEARIO BRISAS DE CAMBULOS</h1>
-            <img src="ipro/logo_cambulos.jpg" alt="Logo Empresa 2" class="logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="inicio.html">Inicio</a></li>
-                <li><a href="reservas_form.html">Reserva</a></li>
-                <li><a href="Registro (pasadia,evento).html">Evento</a></li>
-                <li><a href="pasadiaformulario.html">Pasadia</a></li>
-                
-            </ul>
-            <form class="search-form">
-                <input type="text" placeholder="Buscar...">
-                <button type="submit">Buscar</button>
-            </form>
-        </nav>
+    <header>
+        <img src="estilos/ipro/logo_chb.jpg" alt="Logo Empresa 1" class="logo">
+        <h3>HOTEL BALNEARIO BRISAS DE CAMBULOS</h3>
+        <ul>
+            <li><a href="inicio.php" target="_blank">Inicio</a></li>
+            <li><a href="reservas_form.html" target="_blank">Reserva</a></li>
+            <li><a href="Registro (pasadia,evento).html" target="_blank">Evento</a></li>
+            <li><a href="pasadiaformulario.html" target="_blank">Pasadía</a></li>
+            <li><a href="Login.html" target="_blank">Inicia Sesión</a></li>
+        </ul>
     </header>
-<!--MAIN-->
-<div class="main">
-    <div class="container">
-      <h2>Formulario Evento</h2>
-      <fo action="mail.php" enctype="multipart/form-data" method="post" name="formulario_html5" autocomplete="off">
-        <label for="nombre">Nombres</label></br>
-        <input type="text" name="nombres" id="nombre" class="cajas"></br>
-        <br>
-        <label for="email">Apellidos</label></br>
-        <input type="email" name="Apellidos" id="email" class="cajas"></br>
-        <br>
-        <label for="identificacion">CC</label></br>
-        <input type="num" name="CC" id="web-site" class="cajas">       </br>
-        <br>
-        <label for="telefono">Celular</label></br>
-        <input type="num" name="Celular" id="telefono" class="cajas"></br>
-        <br>
-        <label for="telefono">Correo</label></br>
-        <input type="varchar" name="Correo" id="telefono" class="cajas"></br>
-        <br>
-        <label for="telefono">Cantidad de Personas</label></br>
-        <input type="num" name="Cantidad" id="telefono" class="cajas"></br>
-        <br>
-        <label for="llegada">Fecha de Ingreso</label></br>
-        <input type="date" id="F_Ingreso" name="fecha-hora-llegada" class="cajas"></br>
-        <br>
-        <label for="llegada">Hora de Ingreso</label></br>
-        <input type="time" id="H_Ingreso" name="fecha-hora-llegada" class="cajas"></br>
-        <label for="llegada">Fecha de salida</label></br>
-        <input type="date" id="F_salida" name="fecha-hora-salida" class="cajas"></br>
-        <br>
-        <label for="llegada">Hora de salida</label></br>
-        <input type="time" id="H_salida" name="fecha-hora-llegada" class="cajas"></br>
-        <br>
-        <label for="precio-unitario">Precio Unitario</label></br>
-        <input type="num" id="precio-unitario" name="precio-unitario" required></br>
-        <br>
-        <label for="precio-unitario">Precio Total</label></br>
-        <input type="num" id="precio-Total" name="precio-Total" required></br>
-        <br>
-        <div class="buttons">
-          <button type="button" onclick="cancelarReserva()">Cancelar</button>
-          <button type="submit">Confirmar</button>
-        </div>
-  </form>
-    </divclas>
-  </div>
+
+    <main>
+        <section id="container">
+            <div class="container">
+                <h1>Formulario para eventos</h1>
+                <form action="evento.php" enctype="multipart/form-data" method="post" name="formulario_html5" autocomplete="off" class="parte1">
+                    <label for="Nombres">Nombres</label>
+                    <input type="text" name="nombre" id="nombre" class="cajas">
+                    <label for="Apellidos">Apellidos</label>
+                    <input type="text" name="Apellidos" id="Apellidos" class="cajas">
+                    <label for="identificacion">CC:</label>
+                    <input type="int" name="identificacion" id="identificacion" class="cajas" required>
+                    <label for="direccion">Dirección de residencia</label>
+                    <input type="text" name="direccion" id="direccion" class="cajas">
+                    <label for="tipo_evento">Tipo de evento</label>
+                    <select name="tipo_evento" id="tipo_evento" class="cajas">
+                        <option value="0">-....-</option>
+                        <option value="Fiesta de 15">Fiesta de 15</option>
+                        <option value="Fiesta de Cumpleaños">Fiesta de Cumpleaños</option>
+                        <option value="Runion">Runion</option>
+                    </select>
+                    <label for="llegada">Fecha y hora de llegada</label>
+                    <input type="datetime-local" id="llegada" name="fecha-hora-llegada" class="cajas">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="cajas">
+                    <label for="telefono">Teléfono</label>
+                    <input type="number" name="telefono" id="telefono" class="cajas">
+                    <label for="cant_personas">Cantidad de personas</label>
+                    <input type="number" name="cant_personas" id="cant_personas" class="cajas">
+                    <div class="buttons">
+                        <button type="button" onclick="cancelar()">Cancelar</button>
+                        <button type="submit">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <h2>Informacion</h2>
+        <p>Horario: fines de semana y festivos. 8:00 am - 5:00 pm</p>
+        <h2>Contacto</h2>
+        <p>Email: contacto@tuempresa.com</p>
+        <p>Teléfono: (+57)3208265400</p>
+        <p>Dirección: Sector las Bombas Villeta-Cundinamarca</p>
+        <p>&copy; 2024 HOTEL BALNEARIO BRISAS DE CAMBULOS. Todos los derechos reservados.</p>
+    </footer>
+    
+    <script>
+        // Obtener la fecha y hora actual en el formato adecuado para el campo datetime-local
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0'); // Meses empiezan desde 0
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+    
+        // Formato para min: "YYYY-MM-DDTHH:MM"
+        const currentDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+    
+        // Establecer el valor mínimo en el campo de fecha y hora de llegada
+        document.getElementById('llegada').setAttribute('min', currentDateTime);
+
+        document.querySelectorAll('header ul li a').forEach(link => {
+    link.addEventListener('click', function(event) {
+        if (link.href === window.location.href) {
+            event.preventDefault(); // Previene la recarga si estás en la misma página
+        }
+    });
+});
+    </script>
 </body>
 </html>
+
+
