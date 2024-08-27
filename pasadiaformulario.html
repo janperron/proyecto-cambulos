@@ -12,7 +12,7 @@
         <img src="estilos/ipro/logo_chb.jpg" alt="Logo Empresa 1" class="logo">
         <h3>HOTEL BALNEARIO BRISAS DE CAMBULOS</h3>
         <ul>
-            <li><a href="inicio.php" target="_blank">Inicio</a></li>
+            <li><a href="inicio.html" target="_blank">Inicio</a></li>
             <li><a href="reservas_form.html" target="_blank">Reserva</a></li>
             <li><a href="Registro (pasadia,evento).html" target="_blank">Evento</a></li>
             <li><a href="pasadiaformulario.html" target="_blank">Pasadía</a></li>
@@ -24,7 +24,7 @@
         <!-- Plan 1 -->
         <div class="plan">
             <div class="plan-image" onclick="togglePlan('plan1')">
-                <img src="estilos/ipro/IMG-20240628-WA0074.jpg" alt="Plan 1">
+                <img src="estilos/ipro/familiar.jpg" alt="Plan 1">
                 <h3>Plan Familiar</h3>
             </div>
             <div class="plan-details" id="plan1">
@@ -37,7 +37,7 @@
         <!-- Plan 2 -->
         <div class="plan">
             <div class="plan-image" onclick="togglePlan('plan2')">
-                <img src="estilos/ipro/IMG-20240628-WA0037.jpg" alt="Plan 2">
+                <img src="estilos/ipro/romantico.jpg" alt="Plan 2">
                 <h3>Plan Romántico</h3>
             </div>
             <div class="plan-details" id="plan2">
@@ -50,7 +50,7 @@
         <!-- Plan 3 -->
         <div class="plan">
             <div class="plan-image" onclick="togglePlan('plan3')">
-                <img src="estilos/ipro/IMG-20240628-WA0045.jpg" alt="Plan 3">
+                <img src="estilos/ipro/aventura.jpg" alt="Plan 3">
                 <h3>Plan Aventura</h3>
             </div>
             <div class="plan-details" id="plan3">
@@ -62,21 +62,36 @@
     </div>
 
     <script>
+        /* Función para alternar la visibilidad de los detalles del plan */
         function togglePlan(id) {
             const planDetails = document.getElementById(id);
-            if (planDetails.style.display === "block") {
-                planDetails.style.display = "none";
-            } else {
-                planDetails.style.display = "block";
-            }
+            planDetails.style.display = planDetails.style.display === "block" ? "none" : "block";
         }
-
+    
+        /* Función para abrir WhatsApp con el mensaje de reserva */
         function reservar(planName) {
-            alert(`Has seleccionado reservar el ${planName}. Serás redirigido a la página de reservas.`);
-            // Aquí puedes añadir redirección a la página de reservas
-            // window.location.href = "pagina_de_reservas.html";
+            const phoneNumber = '573125352884'; // Número de teléfono con el código de país sin el "+"
+            let message = '';
+    
+            switch (planName) {
+                case 'Plan Familiar':
+                    message = 'Hola, me gustaría reservar el Plan Familiar en su hotel. ¿Me pueden dar más detalles, por favor?';
+                    break;
+                case 'Plan Romántico':
+                    message = 'Hola, me gustaría reservar el Plan Romántico en su hotel. ¿Me pueden dar más detalles, por favor?';
+                    break;
+                case 'Plan Aventura':
+                    message = 'Hola, me gustaría reservar el Plan Aventura en su hotel. ¿Me pueden dar más detalles, por favor?';
+                    break;
+                default:
+                    message = 'Hola, me gustaría reservar un plan en su hotel. ¿Me pueden dar más detalles, por favor?';
+            }
+    
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
         }
     </script>
+    
   <footer>
     <h2>Informacion</h2>
     <p>Horario: fines de semana y festivos. 8:00 am - 5:00 pm</p>

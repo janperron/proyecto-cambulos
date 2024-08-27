@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar si se encontró el usuario
     if ($result->num_rows > 0) {
         echo "Inicio de sesión exitoso.";
-        header("Location: inicio.php"); // Redirigir a la página de inicio
+        header("Location: inicio.html"); // Redirigir a la página de inicio
         exit(); // Asegura que el código de abajo no se ejecutará
     } else {
         // Mostrar alerta de usuario no encontrado y redirigir al registro

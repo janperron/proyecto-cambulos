@@ -71,6 +71,30 @@ header ul li a:hover::after {
     width: 100%;
 }
 
+
+#mision-vision {
+    display: flex; /* Utiliza flexbox para alinear los elementos en fila */
+    justify-content: space-between; /* Distribuye el espacio equitativamente */
+    gap: 20px; /* Espacio entre los contenedores de misión y visión */
+    margin: 40px; /* Márgenes externos para separar del borde de la página */
+}
+
+.mision, .vision {
+    flex: 1; /* Cada contenedor ocupa el mismo ancho */
+    padding: 10px; /* Espaciado interno */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para estilo */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #f9f9f9; /* Fondo de color claro */
+}
+
+.mision {
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+.vision {
+    text-align: left; /* Puedes cambiar a 'right' si prefieres que la visión esté alineada a la derecha */
+}
+
 /* --- Estilos del footer --- */
 /* Estilos para el pie de página */
 footer {
