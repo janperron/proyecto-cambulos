@@ -1,37 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Metadatos del documento -->
-    <meta charset="UTF-8"> <!-- Codificación de caracteres -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajuste de la vista para dispositivos móviles -->
-    <title>Registro</title> <!-- Título de la página -->
-    <link rel="stylesheet" href="estilos/regisro_estilo.css"> <!-- Enlace al archivo CSS para estilos -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="estilos/regisro_estilo.css">
 </head>
 <body>
-    <!-- Contenedor principal del formulario de registro -->
     <div class="register-container">
-        <!-- Logo de la empresa -->
         <img src="estilos/ipro/logo_chb.jpg" alt="Logo Empresa 1" class="logo">
-        
-        <!-- Título del formulario de registro -->
         <h2>Registro</h2>
-        
-        <!-- Formulario de registro -->
         <form id="register-form" action="Conexion_registro.php" method="post">
-            <!-- Campo de entrada para el nombre de usuario -->
-            <input type="text" id="username" name="username" placeholder="Nombre de usuario" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" minlength="1" maxlength="30" title="Solo se permiten letras y espacios." required>
-            
-            <!-- Campo de entrada para el número de identificación -->
-            <input type="text" id="identificacion" name="identificacion" placeholder="Número de identificación" required>
-            
-            <!-- Campo de entrada para la contraseña -->
+            <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
+            <input type="text" id="identificacion" name="identificacion" placeholder="numero de identificacion" required>
             <input type="password" id="password" name="password" placeholder="Contraseña" required>
-            
-            <!-- Botón de envío del formulario -->
             <button type="submit">Registrar</button>
         </form>
-        
-        <!-- Enlace para el inicio de sesión si el usuario ya tiene una cuenta -->
         <p>¿Ya tienes una cuenta? <a href="Login.html" target="_blank">Inicia sesión aquí</a></p>
     </div>
 </body>

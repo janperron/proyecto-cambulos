@@ -24,3 +24,25 @@ document.querySelectorAll('header ul li a').forEach(link => {
         }
     });
 });
+// Función para hacer que la página parpadee
+function titilarPagina() {
+    // Añadir clase para parpadeo
+    document.body.classList.add('parpadeo');
+
+    // Quitar clase después de 500ms
+    setTimeout(function() {
+        document.body.classList.remove('parpadeo');
+    }, 500);
+}
+
+// Asignar el evento al enlace de "Inicio"
+document.addEventListener('DOMContentLoaded', function() {
+    const inicioLink = document.querySelector('a[href="inicio.html"]');
+    
+    if (inicioLink) {
+        inicioLink.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevenir el comportamiento por defecto
+            titilarPagina(); // Llamar a la función para parpadear
+        });
+    }
+});

@@ -96,7 +96,9 @@ footer .ubicacion {
 }
 
 .plan {
-    width: 300px;
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 300px;
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
@@ -104,6 +106,7 @@ footer .ubicacion {
     margin: 70px 0;
     cursor: pointer;
     transition: box-shadow 0.3s ease;
+    height: 100%;
 }
 
 .plan:hover {
@@ -147,3 +150,12 @@ footer .ubicacion {
 .plan-details button:hover {
     background-color: #0056b3;
 }
+/* Clase CSS para el efecto de parpadeo */
+@keyframes parpadeo {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  
+  .parpadeo {
+    animation: parpadeo 0.5s ease-in-out;
+  }

@@ -1,9 +1,9 @@
 <?php
 // Conexión a la base de datos
-$servername = "localhost"; // Cambia esto al nombre de tu servidor
-$username = "tu_usuario"; // Cambia esto a tu nombre de usuario
-$password = "tu_contraseña"; // Cambia esto a tu contraseña
-$dbname = "nombre_base_datos"; // Cambia esto al nombre de tu base de datos
+$servername = "localhost";
+$username = "root"; // Reemplaza con tu usuario de base de datos
+$password = ""; // Reemplaza con tu contraseña de base de datos
+$dbname = "cambulos"; // Reemplaza con el nombre de tu base de datos
 
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -19,25 +19,22 @@ $apellidos = $_POST['apellidos'];
 $identificacion = $_POST['identificacion'];
 $vehiculo = $_POST['vehiculo'];
 $placa = $_POST['placa'];
-$fecha_hora_llegada = $_POST['fecha-hora-llegada'];
+$fechaHoraLlegada = $_POST['fecha-hora-llegada'];
 $email = $_POST['email'];
 $ciudad = $_POST['ciudad'];
 $telefono = $_POST['telefono'];
 $destino = $_POST['destino'];
 $cant_personas = $_POST['cant_personas'];
-$viaja_con_menores = $_POST['viaja-con-menores'];
+$cantidad_ninos = isset($_POST['cantidad-ninos']) ? htmlspecialchars($_POST['cantidad-ninos']) : NULL;
+$rango_edades = isset($_POST['rango-edades']) ? htmlspecialchars($_POST['rango-edades']) : NULL;
 
-// Datos adicionales solo si viaja con menores
-$cantidad_ninos = isset($_POST['cantidad-ninos']) ? $_POST['cantidad-ninos'] : null;
-$rango_edades = isset($_POST['rango-edades']) ? $_POST['rango-edades'] : null;
+// Consulta para insertar los datos en la base de datos
+$sql = "INSERT INTO reservas (nombres, apellidos, identificacion, vehiculo, placa, fecha_hora_llegada, email, ciudad, telefono, destino, cant_personas, cantidad_ninos, rango_edades) 
+        VALUES ('$nombre', '$apellidos', '$identificacion', '$vehiculo', '$placa', '$fechaHoraLlegada', '$email', '$ciudad', '$telefono', '$destino', '$cant_personas', '$cantidad_ninos', '$rango_edades')";
 
-// Consulta para insertar los datos en la tabla de reservas
-$sql = "INSERT INTO reservas (nombre, apellidos, identificacion, vehiculo, placa, fecha_hora_llegada, email, ciudad, telefono, destino, cant_personas, viaja_con_menores, cantidad_ninos, rango_edades)
-        VALUES ('$nombre', '$apellidos', '$identificacion', '$vehiculo', '$placa', '$fecha_hora_llegada', '$email', '$ciudad', '$telefono', '$destino', '$cant_personas', '$viaja_con_menores', '$cantidad_ninos', '$rango_edades')";
-
-// Ejecutar la consulta y verificar si se insertaron los datos correctamente
 if ($conn->query($sql) === TRUE) {
-    echo "Reserva realizada con éxito.";
+    header("Location: inicio.html"); // Redirige automáticamente
+    exit(); // Asegúrate de salir del script después de la redirección
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

@@ -141,3 +141,12 @@ footer .ubicacion {
 .slide.active {
     opacity: 1;
 }
+/* Clase CSS para el efecto de parpadeo */
+@keyframes parpadeo {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.parpadeo {
+  animation: parpadeo 0.5s ease-in-out;
+}

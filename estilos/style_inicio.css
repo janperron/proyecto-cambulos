@@ -95,6 +95,27 @@ header ul li a:hover::after {
     text-align: left; /* Puedes cambiar a 'right' si prefieres que la visión esté alineada a la derecha */
 }
 
+/* Nuevas reglas para los títulos */
+.mision h2, .vision h2 {
+    font-size: 24px; /* Tamaño de fuente para los títulos */
+    font-weight: bold; /* Hace los títulos más gruesos */
+    color: #333; /* Color del texto */
+    margin-bottom: 15px; /* Espacio debajo del título */
+    text-transform: uppercase; /* Transforma el texto a mayúsculas */
+}
+
+/* Estilo adicional para la personalización */
+.mision h2 {
+    border-bottom: 2px solid #007bff; /* Añade una línea de color debajo del título de misión */
+    padding-bottom: 10px; /* Espacio debajo del título para la línea */
+}
+
+.vision h2 {
+    border-bottom: 2px solid #28a745; /* Añade una línea de color debajo del título de visión */
+    padding-bottom: 10px; /* Espacio debajo del título para la línea */
+}
+
+
 /* --- Estilos del footer --- */
 /* Estilos para el pie de página */
 footer {
@@ -206,4 +227,13 @@ h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #333;
+}
+/* Clase CSS para el efecto de parpadeo */
+@keyframes parpadeo {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.parpadeo {
+    animation: parpadeo 0.5s ease-in-out;
 }

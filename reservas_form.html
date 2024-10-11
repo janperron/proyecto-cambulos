@@ -20,12 +20,12 @@
         
         <!-- Barra de navegación -->
         <ul>
-            <li><a href="inicio.php" target="_blank">Inicio</a></li>
-            <li><a href="reservas_form.html" target="_blank">Reserva</a></li>
-            <li><a href="Registro (pasadia,evento).html" target="_blank">Evento</a></li>
-            <li><a href="pasadiaformulario.html" target="_blank">Pasadía</a></li>
-            <li><a href="Login.html" target="_blank">Inicia Sesión</a></li>
-        </ul>  
+            <li><a href="inicio.html" >Inicio</a></li>
+            <li><a href="reservas_form.html" >Reserva</a></li>
+            <li><a href="Registro (pasadia,evento).html" >Evento</a></li>
+            <li><a href="pasadiaformulario.html">Pasadía</a></li>
+            <li><a href="Login.html" >Inicia Sesión</a></li>
+        </ul>    
     </header>
 
     <!-- --- Sección principal de contenido --- -->
@@ -41,15 +41,15 @@
                     
                     <!-- Campo para el nombre -->
                     <label for="nombre">Nombres</label>
-                    <input type="text" name="nombre" id="nombre" class="cajas" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" minlength="1" maxlength="30" title="Solo se permiten letras y espacios." required>
+                    <input type="text" name="nombre" id="nombre" class="cajas" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" title="Solo se permiten letras y espacios." required>
                     
                     <!-- Campo para los apellidos -->
                     <label for="Apellidos">Apellidos</label>
-                    <input type="text" name="apellidos" id="apellidos" class="cajas" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" minlength="1" maxlength="30" title="Solo se permiten letras y espacios." required>
+                    <input type="text" name="apellidos" id="apellidos" class="cajas" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" title="Solo se permiten letras y espacios." required>
                    
                     <!-- Campo para el número de identificación -->
-                    <label for="number">CC</label>
-                    <input type="number" name="identificacion" id="CC" class="cajas"minlength="1" maxlength="20" title="Ingrese un número válido de identificación."  oninput="validarLongitudMaxima(this)" required>
+                    <label for="CC">CC</label>
+                    <input type="enum" name="identificacion" id="identificacion" class="cajas"  maxlength="10">
                     
                     <!-- Campo para seleccionar el tipo de vehículo -->
                     <label for="Vehículo">Vehículo</label>
@@ -61,7 +61,7 @@
 
                     <!-- Campo para la placa del vehículo -->
                     <label for="placa">Placa</label>
-                    <input type="text" name="placa" id="placa" class="cajas" pattern="^[A-Z0-9-]+$" minlength="1" maxlength="10" title="Solo se permiten letras mayúsculas, números y guiones." required>
+                    <input type="text" name="placa" id="placa" class="cajas" pattern="^[A-Z0-9-]+$" title="Solo se permiten letras mayúsculas, números y guiones." required>
                     
                     <!-- Campo para la fecha y hora de llegada -->
                     <label for="llegada">Fecha y hora de llegada</label>
@@ -73,22 +73,23 @@
                     
                     <!-- Campo para la ciudad -->
                     <label for="Ciudad"> Ciudad de Procedencia</label>
-                    <input type="text" name="ciudad" id="ciudad" class="cajas" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" minlength="1" maxlength="20" title="Solo se permiten letras y espacios." required>
+                    <input type="text" name="ciudad" id="ciudad" class="cajas" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" title="Solo se permiten letras y espacios." required>
                     
                     <!-- Campo para el número de teléfono -->
-                    <label for="n">Teléfono</label>
-                    <input type="number" name="telefono" id="telefono" class="cajas" pattern="^\+?[0-9\s]+$" minlength="1" maxlength="20" title="Ingrese un número de teléfono válido." minlength="1" maxlength="20" title="Ingrese un número de teléfono válido." oninput="validarLongitudMaxima(this)" required>
+                    <label for="telefono">Teléfono</label>
+                    <input type="enum" name="telefono" id="telefono" class="cajas"  maxlength="10">
                     
                     <!-- Campo para el destino -->
                     <label for="destino">Destino</label>
-                    <input type="text" name="destino" id="destino" class="cajas" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" minlength="1" maxlength="30" title="Solo se permiten letras y espacios." required>
+                    <input type="text" name="destino" id="destino" class="cajas" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" title="Solo se permiten letras y espacios." required>
                                         
-                    <!-- Campo para ingresar la cantidad de personas con validación adicional -->
+                    <!-- Campo para ingresar la cantidad de personas -->
                     <label for="cant_personas">Cantidad de personas</label>
-                    <input type="text" name="cant_personas" id="cant_personas" class="cajas" maxlength="20" pattern="\d*" oninput="validarLongitudMaxima(this)" required>
+                    <input type="number" name="cant_personas" id="cant_personas" class="cajas">
 
+                    <!-- Agregar 'name' al select y corregir el evento onchange -->
                     <label for="viaja-con-menores">¿Viaja con menores?</label>
-                    <select id="viaja-con-menores" class="cajas" onchange="mostrarCamposMenores()">
+                    <select id="viaja-con-menores" name="viaja-con-menores" class="cajas" onchange="mostrarCamposMenores()">
                         <option value="no">No</option>
                         <option value="si">Sí</option>
                     </select>
@@ -97,13 +98,14 @@
                     <div id="campos-menores" style="display: none;">
                         <!-- Campo para la cantidad de niños -->
                         <label for="cantidad-ninos">Cantidad de niños</label>
-                        <input type="number" name="cantidad-ninos" id="cantidad-ninos" class="cajas" min="1" max="20" title="Ingrese la cantidad de niños."  oninput="validarLongitudMaxima(this)" required>
-<br>
+                        <input type="number" name="cantidad-ninos" id="cantidad-ninos" class="cajas" min="1" title="Ingrese la cantidad de niños.">
+                        <br>
                         <!-- Campo para el rango de edades -->
                         <label for="rango-edades">Rango de edades</label>
-                        <input type="text" name="rango-edades" id="rango-edades" class="cajas" pattern="^[0-9\s,-]+$" title="Ingrese el rango de edades separado por comas o guiones. Ejemplo: 3-5, 6-10"  oninput="validarLongitudMaxima(this)" required>
+                        <input type="text" name="rango-edades" id="rango-edades" class="cajas" pattern="^[0-9\s,-]+$" title="Ingrese el rango de edades separado por comas o guiones. Ejemplo: 3-5, 6-10">
                     </div>
 
+                    
                     <!-- Botones para cancelar o confirmar la reserva -->
                     <div class="buttons">
                         <button type="button" onclick="cancelar()">Cancelar</button>

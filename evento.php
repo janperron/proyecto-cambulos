@@ -49,7 +49,7 @@ try {
             // Mostrar una alerta de JavaScript y redirigir al usuario
             echo "<script>
                     alert('REGISTRO EXITOSO °_°');
-                    window.location.href = 'inicio.php';
+                    window.location.href = 'inicio.html';
                   </script>";
         } else {
             echo "Error al registrar el evento.";
@@ -60,3 +60,4 @@ try {
     echo 'Error en la conexión a la base de datos: ' . $e->getMessage();
 }
 ?>
+

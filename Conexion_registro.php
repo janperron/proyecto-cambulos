@@ -1,7 +1,7 @@
 <?php
-$servername = "localhost"; // Nombre del servidor
-$username = "root"; // Usuario de la base de datos
-$password = ""; // Contraseña de la base de datos
+$servername = "localhost"; // Nombre del servidor (usualmente 'localhost')
+$username = "root"; // Tu nombre de usuario de la base de datos
+$password = ""; // Tu contraseña de la base de datos
 $dbname = "cambulos"; // Nombre de la base de datos
 
 // Crear la conexión
@@ -17,28 +17,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $identificacion = $_POST['identificacion'];
     $password = $_POST['password'];
 
-    // Insertar los datos en la base de datos
+    // NO encriptar la contraseña, guardarla tal como fue ingresada
     $sql = "INSERT INTO usuarios (nombre_usuario, identificacion, contraseña) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sss", $username, $identificacion, $password);
 
     if ($stmt->execute()) {
-        // Indicar que el registro fue exitoso para mostrar la alerta después
+        // Redirigir al usuario al login con una alerta
         echo "<script>
-                window.onload = function() {
-                    alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
-                    window.location.href = 'login.html';
-                };
+                alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
+                window.location.href = 'login.html';
               </script>";
     } else {
-        echo "<script>
-                window.onload = function() {
-                    alert('Error: No se pudo completar el registro.');
-                };
-              </script>";
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
     $stmt->close();
     $conn->close();
 }
 ?>
+
+
+
