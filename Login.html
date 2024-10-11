@@ -7,15 +7,30 @@
     <link rel="stylesheet" href="estilos/estilo_login.css">
 </head>
 <body>
+    <!-- Contenedor principal del formulario de inicio de sesión -->
     <div class="login-container">
+        <!-- Logo de la empresa -->
         <img src="estilos/ipro/logo_chb.jpg" alt="Logo Empresa 1" class="logo">
+        
+        <!-- Título del formulario de inicio de sesión -->
         <h2>Iniciar sesión</h2>
-        <form id="login-form" action="Conexion_login.php" method="post">
-            <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
+        
+        <!-- Formulario de inicio de sesión -->
+        <form id="login-form" action="Conexion_loginusu.php" method="post">
+            <input type="text" id="username" name="username" placeholder="Nombre de usuario" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" minlength="1" maxlength="30" title="Solo se permiten letras y espacios." required>
             <input type="password" id="password" name="password" placeholder="Contraseña" required>
             <button type="submit">Iniciar sesión</button>
         </form>
+        
+        <!-- Enlace para el registro de nuevas cuentas -->
         <p>¿No tienes una cuenta? <a href="registro.html" target="_blank">Regístrate aquí</a></p>
     </div>
+    
+    <script>
+        // Verificar si hay un parámetro 'registro=exitoso' en la URL
+        if (window.location.search.includes('registro=exitoso')) {
+            alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
+        }
+        </script>
 </body>
 </html>

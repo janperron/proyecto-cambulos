@@ -1,43 +1,62 @@
 <?php
-// Configuración de la conexión a la base de datos
-$servername = "localhost"; // Cambia a tu servidor si es necesario
-$username = "root"; // Cambia al nombre de usuario de tu base de datos
-$password = ""; // Cambia a la contraseña de tu base de datos
-$dbname = "cambulos"; // Cambia al nombre de tu base de datos
+// Datos de configuración de la base de datos
+$host = 'localhost';
+$dbname = 'cambulos';  // Reemplaza con el nombre de tu base de datos
+$username = 'root';  // Reemplaza con tu usuario de base de datos
+$password = '';  // Reemplaza con tu contraseña de base de datos
 
-// Crear la conexión
-$conn = new mysqli($servername, $username, $password, $dbname);
+try {
+    // Crear una nueva conexión a la base de datos usando PDO
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    // Configurar el modo de error de PDO a excepción
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// Verificar la conexión
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
+    // Comprobar si se recibió una solicitud POST
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Recoger y sanitizar los datos del formulario
+        $nombre = htmlspecialchars($_POST['nombre']);
+        $apellidos = htmlspecialchars($_POST['Apellidos']);
+        $identificacion = htmlspecialchars($_POST['identificacion']);
+        $direccion = htmlspecialchars($_POST['direccion']);
+        $tipo_evento = htmlspecialchars($_POST['vehiculo']);
+        $fecha_hora_llegada = htmlspecialchars($_POST['fecha-hora-llegada']);
+        $email = htmlspecialchars($_POST['email']);
+        $telefono = htmlspecialchars($_POST['telefono']);
+        $cant_personas = htmlspecialchars($_POST['cant_personas']);
+        $cantidad_ninos = isset($_POST['cantidad-ninos']) ? htmlspecialchars($_POST['cantidad-ninos']) : NULL;
+        $rango_edades = isset($_POST['rango-edades']) ? htmlspecialchars($_POST['rango-edades']) : NULL;
 
-// Verificar si el formulario ha sido enviado
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener y sanitizar los datos del formulario
-    $nombre = $conn->real_escape_string($_POST['nombre']);
-    $apellidos = $conn->real_escape_string($_POST['Apellidos']);
-    $identificacion = $conn->real_escape_string($_POST['identificacion']);
-    $direccion = $conn->real_escape_string($_POST['direccion']);
-    $tipo_evento = $conn->real_escape_string($_POST['tipo_evento']);
-    $fecha_hora_llegada = $conn->real_escape_string($_POST['fecha-hora-llegada']);
-    $email = $conn->real_escape_string($_POST['email']);
-    $telefono = $conn->real_escape_string($_POST['telefono']);
-    $cant_personas = $conn->real_escape_string($_POST['cant_personas']);
+        // Preparar la sentencia SQL con placeholders
+        $sql = "INSERT INTO eventos (nombres, apellidos, identificacion, direccion, tipo_evento, fecha_hora_llegada, email, telefono, cant_personas, cantidad_ninos, rango_edades) 
+                VALUES (:nombre, :apellidos, :identificacion, :direccion, :tipo_evento, :fecha_hora_llegada, :email, :telefono, :cant_personas, :cantidad_ninos, :rango_edades)";
 
-    // Crear la consulta SQL para insertar los datos
-    $sql = "INSERT INTO eventos (nombres, apellidos, identificacion, direccion, tipo_evento, fecha_hora_llegada, email, telefono, cant_personas)
-            VALUES ('$nombre', '$apellidos', '$identificacion', '$direccion', '$tipo_evento', '$fecha_hora_llegada', '$email', '$telefono', '$cant_personas')";
+        $stmt = $pdo->prepare($sql);
 
-    // Ejecutar la consulta y verificar si se ha insertado correctamente
-    if ($conn->query($sql) === TRUE) {
-        echo "Registro guardado con éxito.";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        // Ejecutar la sentencia SQL con los datos del formulario
+        if ($stmt->execute([
+            ':nombre' => $nombre,
+            ':apellidos' => $apellidos,
+            ':identificacion' => $identificacion,
+            ':direccion' => $direccion,
+            ':tipo_evento' => $tipo_evento,
+            ':fecha_hora_llegada' => $fecha_hora_llegada,
+            ':email' => $email,
+            ':telefono' => $telefono,
+            ':cant_personas' => $cant_personas,
+            ':cantidad_ninos' => $cantidad_ninos,
+            ':rango_edades' => $rango_edades
+        ])) {
+            // Mostrar una alerta de JavaScript y redirigir al usuario
+            echo "<script>
+                    alert('REGISTRO EXITOSO °_°');
+                    window.location.href = 'inicio.php';
+                  </script>";
+        } else {
+            echo "Error al registrar el evento.";
+        }
     }
-
-    // Cerrar la conexión
-    $conn->close();
+} catch (PDOException $e) {
+    // Manejo de errores de conexión y ejecución SQL
+    echo 'Error en la conexión a la base de datos: ' . $e->getMessage();
 }
 ?>

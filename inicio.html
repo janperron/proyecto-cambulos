@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,23 +11,36 @@
     <!-- Enlaces a los archivos CSS -->
     <link rel="stylesheet" href="estilos/style_inicio.css">
     <link rel="stylesheet" href="materialize.css">
+    <link rel="stylesheet" href="estilos/estilos.css?v=<?php echo time(); ?>">    
     <title>Inicio</title>
 </head>
 
-<body>
+<body class="pagina-animada">
 
     <!-- Encabezado de la página con el logotipo y la navegación -->
-    <header>
+    <header class="header-animado">
         <img src="estilos/ipro/logo_chb.jpg" alt="Logo Empresa 1" class="logo">
         <h3>HOTEL BALNEARIO BRISAS DE CAMBULOS</h3>    
         <ul>
             <!-- Enlaces de navegación a diferentes secciones del sitio -->
-            <li><a href="inicio.html" target="">Inicio</a></li>
+            <li><a href="inicio.php" target="_blank">Inicio</a></li>
             <li><a href="reservas_form.html" target="_blank">Reserva</a></li>
             <li><a href="Registro (pasadia,evento).html" target="_blank">Evento</a></li>
             <li><a href="pasadiaformulario.html" target="_blank">Pasadía</a></li>
             <li><a href="Login.html" target="_blank">Inicia Sesión</a></li>
         </ul>
+
+        <div class="user-dropdown">
+            <button class="dropdown-button">
+                <?php echo isset($_SESSION['nombre_usuario']) ? $_SESSION['nombre_usuario'] : 'Invitado'; ?>
+            </button>
+            <div class="dropdown-content">
+                <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] == 'admin'): ?>
+                    <a href="admin-panel.html" class="admin-link">Panel de Administrador</a>
+                <?php endif; ?>
+                <a href="logout.php">Cerrar sesión</a>
+            </div>
+        </div>
     </header>
 
     <!-- Sección del carrusel de imágenes -->
@@ -33,9 +50,8 @@
             <div class="slide active" style="background-image: url('estilos/ipro/IMG-20240628-WA0074.jpg');"></div>
             <div class="slide" style="background-image: url('estilos/ipro/inicio2.jpg');"></div>
             <div class="slide" style="background-image: url('estilos/ipro/inicio3.jpg');"></div>
-            <div class="slide" style="background-image: url('estilos//ipro/inicio2.jpg');"></div>
+            <div class="slide" style="background-image: url('estilos/ipro/inicio2.jpg');"></div>
             <!-- Otras imágenes del carrusel -->
-            <!-- ... -->
         </div>
 
         <!-- Enlaces a WhatsApp y Facebook -->
@@ -48,24 +64,33 @@
     </section>
 
     <!-- Sección de misión y visión -->
-    <!-- Sección de misión y visión -->
     <section id="mision-vision">
-    <div class="mision">
-        <h2>Misión</h2>
-        <p>
-            La organización identificada con el nombre comercial BALNEARIO BRISAS LOS CAMBULOS es una empresa dedicada a promover el sector turismo, mediante parámetros de responsabilidad social, satisfaciendo las necesidades y experiencias del mercado de las ciudades y pueblos aledaños que requieren el servicio de hospedaje y piscina, en un ambiente familiar.
-        </p>
-    </div>
-    <div class="vision">
-        <h2>Visión</h2>
-        <p>
-            La organización identificada con el nombre comercial, “BALNEARIO BRISAS LOS CAMBULOS” se proyecta como una de las empresas promotoras del sector turismo de nuestro municipio y de la región, brindando descanso y sano esparcimiento de los visitantes propios y foráneos, buscará capacitar permanentemente al equipo de trabajo para velar por el mejoramiento en calidad del servicio, apoyando permanentemente en los valores institucionales y comprometidos en contribuir con sus acciones a la mejora del medioambiente.
-        </p>
-    </div>
-    </section>
+        <!-- Misión -->
+        <div id="mision">
+            <h2>Misión</h2>
+            <p>
+                La organización identificada con el nombre comercial BALNEARIO BRISAS LOS
+                CAMBULOS es una empresa dedicada a promover el sector turismo, mediante
+                parámetros de responsabilidad social, satisfaciendo las necesidades y experiencias
+                del mercado de las ciudades y pueblos aledaños que requieren el servicio de
+                hospedaje y piscina, en un ambiente familiar.
+            </p>
+        </div>
 
-    <br>
-    <br>
+        <!-- Visión -->
+        <div id="vision">
+            <h2>Visión</h2>
+            <p>
+                La organización identificada con el nombre comercial BALNEARIO BRISAS LOS
+                CAMBULOS se proyecta como una de las empresas promotoras del sector turismo
+                de nuestro municipio y de la región, brindando descanso y sano esparcimiento de
+                los visitantes propios y foráneos. Buscará capacitar permanentemente al equipo de
+                trabajo para velar por el mejoramiento en calidad del servicio, apoyando
+                permanentemente en los valores institucionales y comprometidos en contribuir con
+                sus acciones a la mejora del medio ambiente.
+            </p>
+        </div>
+    </section>
 
     <!-- Sección de ubicación con un mapa de Google Maps -->
     <section id="location">
@@ -87,7 +112,64 @@
     </footer>
 
     <!-- Enlace al archivo JavaScript externo -->
-    <script src="funciones_javascript/inicio.js"></script>
-</body>
+    <script src="funciones_javascript/reserva.js?v=<?php echo time(); ?>"></script>
+    <script>
+        // Espera a que el contenido del DOM esté completamente cargado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Selecciona todas las imágenes dentro del carrusel
+            const slides = document.querySelectorAll('.slide');
+            let currentIndex = 0; // Índice actual de la imagen mostrada
 
+            // Función para mostrar la siguiente imagen en el carrusel
+            function showNextSlide() {
+                slides[currentIndex].classList.remove('active'); // Quita la clase 'active' de la imagen actual
+                currentIndex = (currentIndex + 1) % slides.length; // Incrementa el índice y lo reinicia si llega al final
+                slides[currentIndex].classList.add('active'); // Agrega la clase 'active' a la nueva imagen
+            }
+
+            // Cambia de imagen cada 3 segundos llamando a showNextSlide
+            setInterval(showNextSlide, 3000);
+        });
+
+        // Añade un event listener a todos los enlaces del menú de navegación
+        document.querySelectorAll('header ul li a').forEach(link => {
+            link.addEventListener('click', function(event) {
+                // Previene la recarga de la página si el enlace apunta a la página actual
+                if (link.href === window.location.href) {
+                    event.preventDefault();
+                }
+            });
+        });
+
+        function logout() {
+            // Aquí puedes agregar la lógica para cerrar sesión
+            alert('Sesión cerrada');
+        }
+
+        // Mostrar u ocultar la opción de administrador según el rol del usuario
+        window.onload = function() {
+            const isAdmin = true; // Cambia esto según el rol del usuario
+            const adminLink = document.querySelector('.admin-link');
+
+            if (!isAdmin) {
+                adminLink.style.display = 'none';
+            }
+        }
+
+        // Función para hacer que la página parpadee
+        function titilarPagina() {
+            // Añadir clase para parpadeo
+            document.body.classList.add('parpadeo');
+
+            // Quitar clase después de 500ms
+            setTimeout(function() {
+                document.body.classList.remove('parpadeo');
+            }, 500);
+        }
+
+        // Asignar el evento al enlace de "Inicio"
+        const inicioLink = document.querySelector('a[href="inicio.php"]');
+        inicioLink.addEventListener('click', titilarPagina);
+    </script>
+</body>
 </html>
