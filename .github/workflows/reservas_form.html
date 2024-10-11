@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Enlace al archivo CSS externo para los estilos -->
+    <link rel="stylesheet" href="estilos/reseva.css">
+    <link rel="stylesheet" href="estilos/responsive.css">
+    <title>Reserva</title>
+</head>
+<body>
+
+    <!-- --- Encabezado fijo con logo y navegación --- -->
+    <header>
+        <!-- Logotipo del hotel -->
+        <img src="estilos/ipro/logo_chb.jpg" alt="Logo Empresa 1" class="logo">
+        
+        <!-- Nombre del hotel -->
+        <h3>HOTEL BALNEARIO BRISAS DE CAMBULOS</h3>
+        
+        <!-- Barra de navegación -->
+        <ul>
+            <li><a href="inicio.html" >Inicio</a></li>
+            <li><a href="reservas_form.html" >Reserva</a></li>
+            <li><a href="Registro (pasadia,evento).html" >Evento</a></li>
+            <li><a href="pasadiaformulario.html">Pasadía</a></li>
+            <li><a href="Login.html" >Inicia Sesión</a></li>
+        </ul>    
+    </header>
+
+    <!-- --- Sección principal de contenido --- -->
+    <main>
+        <!-- Contenedor del formulario de reserva -->
+        <section id="container">
+            <div class="container">
+                <!-- Título del formulario -->
+                <h1>Formulario de reserva</h1>
+                
+                <!-- Formulario para capturar los datos de reserva -->
+                <form action="reserva.php" enctype="multipart/form-data" method="post" name="formulario_html5" autocomplete="off" class="parte1">
+                    
+                    <!-- Campo para el nombre -->
+                    <label for="nombre">Nombres</label>
+                    <input type="text" name="nombre" id="nombre" class="cajas" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" title="Solo se permiten letras y espacios." required>
+                    
+                    <!-- Campo para los apellidos -->
+                    <label for="Apellidos">Apellidos</label>
+                    <input type="text" name="apellidos" id="apellidos" class="cajas" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" title="Solo se permiten letras y espacios." required>
+                   
+                    <!-- Campo para el número de identificación -->
+                    <label for="CC">CC</label>
+                    <input type="enum" name="identificacion" id="identificacion" class="cajas"  maxlength="10">
+                    
+                    <!-- Campo para seleccionar el tipo de vehículo -->
+                    <label for="Vehículo">Vehículo</label>
+                    <select name="vehiculo" id="Vehículo" class="cajas">
+                        <option value="0">-....-</option>
+                        <option value="1">Automovil</option>
+                        <option value="2">Motocicleta</option>
+                    </select>
+
+                    <!-- Campo para la placa del vehículo -->
+                    <label for="placa">Placa</label>
+                    <input type="text" name="placa" id="placa" class="cajas" pattern="^[A-Z0-9-]+$" title="Solo se permiten letras mayúsculas, números y guiones." required>
+                    
+                    <!-- Campo para la fecha y hora de llegada -->
+                    <label for="llegada">Fecha y hora de llegada</label>
+                    <input type="datetime-local" id="llegada" name="fecha-hora-llegada" class="cajas" required>
+                    
+                    <!-- Campo para el correo electrónico -->
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="cajas" title="Ingrese un correo electrónico válido." required>
+                    
+                    <!-- Campo para la ciudad -->
+                    <label for="Ciudad"> Ciudad de Procedencia</label>
+                    <input type="text" name="ciudad" id="ciudad" class="cajas" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" title="Solo se permiten letras y espacios." required>
+                    
+                    <!-- Campo para el número de teléfono -->
+                    <label for="telefono">Teléfono</label>
+                    <input type="enum" name="telefono" id="telefono" class="cajas"  maxlength="10">
+                    
+                    <!-- Campo para el destino -->
+                    <label for="destino">Destino</label>
+                    <input type="text" name="destino" id="destino" class="cajas" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" title="Solo se permiten letras y espacios." required>
+                                        
+                    <!-- Campo para ingresar la cantidad de personas -->
+                    <label for="cant_personas">Cantidad de personas</label>
+                    <input type="number" name="cant_personas" id="cant_personas" class="cajas">
+
+                    <!-- Agregar 'name' al select y corregir el evento onchange -->
+                    <label for="viaja-con-menores">¿Viaja con menores?</label>
+                    <select id="viaja-con-menores" name="viaja-con-menores" class="cajas" onchange="mostrarCamposMenores()">
+                        <option value="no">No</option>
+                        <option value="si">Sí</option>
+                    </select>
+
+                    <!-- Contenedor de los campos adicionales, inicialmente oculto -->
+                    <div id="campos-menores" style="display: none;">
+                        <!-- Campo para la cantidad de niños -->
+                        <label for="cantidad-ninos">Cantidad de niños</label>
+                        <input type="number" name="cantidad-ninos" id="cantidad-ninos" class="cajas" min="1" title="Ingrese la cantidad de niños.">
+                        <br>
+                        <!-- Campo para el rango de edades -->
+                        <label for="rango-edades">Rango de edades</label>
+                        <input type="text" name="rango-edades" id="rango-edades" class="cajas" pattern="^[0-9\s,-]+$" title="Ingrese el rango de edades separado por comas o guiones. Ejemplo: 3-5, 6-10">
+                    </div>
+
+                    
+                    <!-- Botones para cancelar o confirmar la reserva -->
+                    <div class="buttons">
+                        <button type="button" onclick="cancelar()">Cancelar</button>
+                        <button type="submit">Confirmar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- --- Pie de página con información de contacto --- -->
+    <footer>
+        <h2>Información</h2>
+        <p>Horario: fines de semana y festivos. 8:00 am - 5:00 pm</p>
+        <h2>Contacto</h2>
+        <p>Email: contacto@tuempresa.com</p>
+        <p>Teléfono: (+57)3208265400</p>
+        <p>Dirección: Sector las Bombas Villeta-Cundinamarca</p>
+        <p>&copy; 2024 HOTEL BALNEARIO BRISAS DE CAMBULOS. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Enlace al archivo JavaScript externo -->
+     
+    <script src="funciones_javascript/reserva.js"></script>
+
+</body>
+</html>

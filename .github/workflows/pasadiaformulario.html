@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planes de Pasadía</title>
+    <link rel="stylesheet" href="estilos/prueba.css">
+    <link rel="stylesheet" href="estilos/responsive.css">
+</head>
+<body>
+
+    <header>
+        <img src="estilos/ipro/logo_chb.jpg" alt="Logo Empresa 1" class="logo">
+        <h3>HOTEL BALNEARIO BRISAS DE CAMBULOS</h3>
+        <ul>
+            <li><a href="inicio.html" >Inicio</a></li>
+            <li><a href="reservas_form.html">Reserva</a></li>
+            <li><a href="Registro (pasadia,evento).html" >Evento</a></li>
+            <li><a href="pasadiaformulario.html">Pasadía</a></li>
+            <li><a href="Login.html">Inicia Sesión</a></li>
+        </ul>
+    </header>
+
+    <div class="planes-container">
+        <!-- Plan 1 -->
+        <div class="plan">
+            <div class="plan-image" onclick="togglePlan('plan1')">
+                <img src="estilos/ipro/familiar.jpg" alt="Plan 1">
+                <h3>Plan Familiar</h3>
+            </div>
+            <div class="plan-details" id="plan1">
+                <p>Olvidate de la rutina y vivan una experiencia llena de paz y diversión en nuestro balneario, Un lugar donde todos disfrutan y se relajan juntos.<br> Un plan familiar que hará sonreír a todos.</p>
+                <p><strong>Precio:</strong> $50.000 por persona</p>
+                <button onclick="reservar('Plan Familiar')">Reservar</button>
+            </div>
+        </div>
+
+        <!-- Plan 2 -->
+        <div class="plan">
+            <div class="plan-image" onclick="togglePlan('plan2')">
+                <img src="estilos/ipro/romantico.jpg" alt="Plan 2">
+                <h3>Plan Romántico</h3>
+            </div>
+            <div class="plan-details" id="plan2">
+                <p>Descubre la magia del amor en nuestro balneario, donde el lujo, el bienestar y la tranquilidad se combinan para ofrecerles una experiencia única y especial en un ambiente lleno de paz y serenidad.</p>
+                <p><strong>Precio:</strong> $120.000 por pareja</p>
+                <button onclick="reservar('Plan Romántico')">Reservar</button>
+            </div>
+        </div>
+
+        <!-- Plan 3 -->
+        <div class="plan">
+            <div class="plan-image" onclick="togglePlan('plan3')">
+                <img src="estilos/ipro/aventura.jpg" alt="Plan 3">
+                <h3>Plan Aventura</h3>
+            </div>
+            <div class="plan-details" id="plan3">
+                <p>Sumérgete en un día de diversión para todas las edades, con piscina y actividades recreativas en un ambiente que combina diversión y tranquilidad en familia.</p><br>
+                <p><strong>Precio:</strong> $70.000 por persona</p>
+                <button onclick="reservar('Plan Aventura')">Reservar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* Función para alternar la visibilidad de los detalles del plan */
+        function togglePlan(id) {
+            const planDetails = document.getElementById(id);
+            planDetails.style.display = planDetails.style.display === "block" ? "none" : "block";
+        }
+    
+        /* Función para abrir WhatsApp con el mensaje de reserva */
+        function reservar(planName) {
+            const phoneNumber = '573125352884'; // Número de teléfono con el código de país sin el "+"
+            let message = '';
+    
+            switch (planName) {
+                case 'Plan Familiar':
+                    message = 'Hola, me gustaría reservar el Plan Familiar en su hotel. ¿Me pueden dar más detalles, por favor?';
+                    break;
+                case 'Plan Romántico':
+                    message = 'Hola, me gustaría reservar el Plan Romántico en su hotel. ¿Me pueden dar más detalles, por favor?';
+                    break;
+                case 'Plan Aventura':
+                    message = 'Hola, me gustaría reservar el Plan Aventura en su hotel. ¿Me pueden dar más detalles, por favor?';
+                    break;
+                default:
+                    message = 'Hola, me gustaría reservar un plan en su hotel. ¿Me pueden dar más detalles, por favor?';
+            }
+    
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+    
+  <footer>
+    <h2>Informacion</h2>
+    <p>Horario: fines de semana y festivos. 8:00 am - 5:00 pm</p>
+          <h2>Contacto</h2>
+          <p>Email: contacto@tuempresa.com</p>
+          <p>Teléfono: (+57)3208265400</p>
+          <p>Dirección: Sector las Bombas Villeta-Cundinamarca</p>
+  <p>&copy; 2024 HOTEL BALNEARIO BRISAS DE CAMBULOS. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('header ul li a').forEach(link => {
+    link.addEventListener('click', function(event) {
+        if (link.href === window.location.href) {
+            event.preventDefault(); // Previene la recarga si estás en la misma página
+        }
+    });
+});
+  </script>
+  
+</body>
+</html>
