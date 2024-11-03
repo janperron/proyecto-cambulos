@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Alojamiento</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="prueba.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+</head>
+<body>
+
+    <section id="buscar-alojamiento">
+        <h2>Encuentra tu próximo alojamiento</h2>
+        <form action="procesar_busqueda.php" method="POST" id="buscar-form">
+            <!-- Campo para ubicación o nombre del alojamiento -->
+            <label for="ubicacion">¿A dónde quieres ir?</label>
+            <input type="text" id="ubicacion" name="ubicacion" placeholder="Ingresa ciudad, hotel o destino" required>
+
+            <!-- Fechas de entrada y salida en un solo campo -->
+            <div class="fecha">
+                <label for="fechas">Fechas de Entrada y Salida</label>
+                <input type="text" id="fechas" name="fechas" placeholder="Selecciona tus fechas" required>
+            </div>
+
+            <div class="relative">
+                <button onclick="toggleDropdown()" class="bg-yellow-500 text-white px-4 py-2 rounded flex items-center">
+                    <i class="fas fa-user mr-2"></i> <span id="summary">2 adultos · 1 niño · 1 habitación</span>
+                    <i class="fas fa-chevron-down ml-2"></i>
+                </button>
+                <div id="dropdown" class="bg-white p-6 rounded-lg shadow-lg w-80 absolute top-12 right-0 hidden">
+                    <div class="flex justify-between items-center mb-4">
+                        <span>Adultos</span>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="decrement('adult-count')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
+                            <span id="adult-count">2</span>
+                            <button onclick="increment('adult-count')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span>Niños</span>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="decrement('child-count')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
+                            <span id="child-count">1</span>
+                            <button onclick="increment('child-count')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
+                        </div>
+                    </div>
+                    <div id="age-dropdown-container" class="grid grid-cols-2 gap-2 mb-4 hidden">
+                    </div>
+                    <p id="age-info" class="text-sm text-gray-600 mb-4 hidden">
+                        Para mostrarte los precios correctos y que encuentres un alojamiento con espacio para todos, necesitamos saber qué edad tendrán los niños en el momento del check-out
+                    </p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span>Habitaciones</span>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="decrement('room-count')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
+                            <span id="room-count">1</span>
+                            <button onclick="increment('room-count')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span>¿Viajas con mascotas?</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        </label>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4">
+                        Los animales de servicio no se consideran mascotas. <a href="#" class="text-blue-600">Más info sobre viajar con animales de servicio</a>
+                    </p>
+                    <button class="w-full bg-blue-600 text-white py-2 rounded" onclick="toggleDropdown()">Listo</button>
+                </div>
+            </div>
+
+            <!-- Botón de búsqueda -->
+            <button type="submit">Buscar Alojamiento</button>
+        </form>
+    </section>
+
+    <!-- Incluyendo Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Configurando Flatpickr para el rango de fechas -->
+    <script>
+        flatpickr("#fechas", {
+            mode: "range",
+            dateFormat: "Y-m-d",
+            minDate: "today",
+            locale: {
+                firstDayOfWeek: 1 // Iniciar semana en lunes
+            }
+        });
+
+
+        function increment(id) {
+            let element = document.getElementById(id);
+            let value = parseInt(element.innerText);
+            if (id === 'child-count' && value < 16) {
+                element.innerText = value + 1;
+                addAgeDropdown();
+            } else if (id !== 'child-count') {
+                element.innerText = value + 1;
+            }
+            updateSummary();
+        }
+
+        function decrement(id) {
+            let element = document.getElementById(id);
+            let value = parseInt(element.innerText);
+            if (value > 0) {
+                element.innerText = value - 1;
+                if (id === 'child-count') {
+                    removeAgeDropdown();
+                }
+                updateSummary();
+            }
+        }
+
+        function toggleDropdown() {
+            let dropdown = document.getElementById('dropdown');
+            dropdown.classList.toggle('hidden');
+        }
+
+        function updateSummary() {
+            let adults = document.getElementById('adult-count').innerText;
+            let children = document.getElementById('child-count').innerText;
+            let rooms = document.getElementById('room-count').innerText;
+            document.getElementById('summary').innerText = `${adults} adultos · ${children} niño · ${rooms} habitación`;
+        }
+
+        function addAgeDropdown() {
+            let container = document.getElementById('age-dropdown-container');
+            let children = parseInt(document.getElementById('child-count').innerText);
+            if (children <= 16) {
+                let select = document.createElement('select');
+                select.className = 'w-full border border-red-500 p-2 rounded mb-2';
+                select.innerHTML = '<option>Edad (obligatorio)</option>';
+                container.appendChild(select);
+                container.classList.remove('hidden');
+            }
+            document.getElementById('age-info').classList.remove('hidden');
+        }
+
+        function removeAgeDropdown() {
+            let container = document.getElementById('age-dropdown-container');
+            let children = parseInt(document.getElementById('child-count').innerText);
+            if (children < 16) {
+                container.removeChild(container.lastChild);
+            }
+            if (children === 0) {
+                container.classList.add('hidden');
+                document.getElementById('age-info').classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

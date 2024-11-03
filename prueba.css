@@ -1,162 +1,83 @@
+/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
+    background-color: #f9f9f9;
     padding: 0;
-    box-sizing: border-box;
+    margin: 0;
+}
+
+#buscar-alojamiento {
+    width: 100%;
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+form {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    background-image: url(./ipro/IMG-20240628-WA0041.jpg);
-    background-size: cover; /* Ajusta la imagen para cubrir toda la pantalla */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-attachment: fixed; /* Fix the background image to the viewport */
-}
-
-header {
-    background-color: whitesmoke;
-    color: black;
-    padding: 1em;
-    text-align: center;
-    position: fixed; /* Hace que el header sea fijo */
-    top: 0; /* Lo coloca en la parte superior de la página */
-    width: 100%; /* Hace que el header abarque todo el ancho de la página */
-    z-index: 1000; /* Asegura que el header esté por encima de otros elementos */
-}
-
-.logo {
-    height: 50px;
-    margin: 0 20px;
-}
-
-header {
-    font-family: cursive;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 20px;
-    background-color: whitesmoke;
-}
-
-header ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-}
-
-header ul li {
-    margin: 0 10px;
-}
-
-header ul li a {
-    color: black;
-    text-decoration: none;
-    padding: 10px 20px;
-    display: block;
-    position: relative;
-}
-
-header ul li a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 2px;
-    background-color: #333;
-    transition: width 0.3s ease;
-}
-
-header ul li a:hover::after {
-    width: 100%;
-}
-
-footer {
-    text-align: center;
-    margin-top: 500px;
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-}
-
-footer p {
-    margin: 5px 0;
-}
-
-footer .ubicacion {
-    width: 20px;
-    vertical-align: middle;
-}
-.planes-container {
-    margin-top: 200px;
-    display: flex;
-    flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
 }
 
-.plan {
-    flex-grow: 1;
-    flex-basis: 0;
-    max-width: 300px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin: 70px 0;
-    cursor: pointer;
-    transition: box-shadow 0.3s ease;
-    height: 100%;
+/* Etiquetas */
+label {
+    font-size: 16px;
+    color: #555;
 }
 
-.plan:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-}
-
-.plan-image img {
-    width: 100%;
-    height: auto;
-}
-
-.plan h3 {
-    text-align: center;
-    padding: 15px 0;
-    margin: 0;
-    background-color: #007bff;
-    color: white;
-}
-
-.plan-details {
-    display: none;
-    padding: 15px;
-    background-color: #f8f9fa;
-}
-
-.plan-details p {
-    margin: 0 0 10px;
-}
-
-.plan-details button {
-    width: 100%;
+/* Campo de texto */
+input[type="text"], input[type="date"], select {
     padding: 10px;
-    background-color: #007bff;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* Selección de fechas y habitaciones */
+.fecha, .seleccion {
+    display: flex;
+    flex-direction: column;
+}
+
+.seleccion {
+    gap: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* Estilo del botón */
+button {
+    padding: 12px;
+    background-color: #5b8c85;
     color: white;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
     font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.plan-details button:hover {
-    background-color: #0056b3;
+button:hover {
+    background-color: #3e5f5a;
 }
-/* Clase CSS para el efecto de parpadeo */
-@keyframes parpadeo {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
-  
-  .parpadeo {
-    animation: parpadeo 0.5s ease-in-out;
-  }
+
+@media screen and (max-width: 600px) {
+    #buscar-alojamiento {
+        padding: 20px;
+    }
+
+    .seleccion {
+        flex-direction: column;
+    }
+}
